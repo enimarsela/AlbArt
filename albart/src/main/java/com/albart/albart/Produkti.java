@@ -1,4 +1,6 @@
-public class Produkt {
+package com.albart.albart;
+
+public class Produkti {
 
     private int produktId;
     private String emri;
@@ -9,7 +11,7 @@ public class Produkt {
     private String statusi;
     private double vleresimiTotal;
 
-    public Produkt(int produktId, String emri, String pershkrimi, double cmimi,
+    public Produkti(int produktId, String emri, String pershkrimi, double cmimi,
                    String fotoProdukti, String watermark, String statusi, double vleresimiTotal) {
         this.produktId = produktId;
         this.emri = emri;
