@@ -1,15 +1,38 @@
-package com.albart.albart;
+package com.albart.albart.models;
 
+import jakarta.persistence.*;
+import lombok.Data;
+
+@Entity
+@Data
+@Table(name = "produkti")
 public class Produkti {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int produktId;
+    @Column(name = "emri")
     private String emri;
+    @Column(name = "pershkrimi")
     private String pershkrimi;
+    @Column(name = "cmimi")
     private double cmimi;
+    @Column(name = "foto_produktit")
     private String fotoProdukti;
+    @Column(name = "watermark")
     private String watermark;
+    @Column(name = "statusi")
     private String statusi;
+    @Column(name = "vleresimi_total")
     private double vleresimiTotal;
+
+    @ManyToOne
+    @JoinColumn(name = "kategori_id")
+    private Kategoria kategoria;
+
+    @ManyToOne
+    @JoinColumn(name = "artist_id")
+    private Artisti artisti;
 
     public Produkti(int produktId, String emri, String pershkrimi, double cmimi,
                    String fotoProdukti, String watermark, String statusi, double vleresimiTotal) {
@@ -23,20 +46,8 @@ public class Produkti {
         this.vleresimiTotal = vleresimiTotal;
     }
 
-    public void applyWatermark() {
-        System.out.println("Watermark u aplikua: " + watermark);
-    }
+    public Produkti() {
 
-    public void updateDetails(String emri, String pershkrimi, double cmimi) {
-        this.emri = emri;
-        this.pershkrimi = pershkrimi;
-        this.cmimi = cmimi;
     }
-
-    public String getArtist() {
-       
-        return "Artist i panjohur";
-    }
-
      
 }
