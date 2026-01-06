@@ -1,0 +1,13 @@
+package com.albart.albart;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class AlbartApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(AlbartApplication.class, args);
+	}
+
+}
