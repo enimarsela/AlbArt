@@ -2,6 +2,7 @@ package dtos;
 
 import jakarta.persistence.Column;
 import lombok.Data;
+import models.Porosi;
 
 import java.util.Date;
 
@@ -14,4 +15,6 @@ public class TransportiDto {
     private String statusi;
 
     private Date dataDergimit;
+
+    private Porosi porosi;
 }

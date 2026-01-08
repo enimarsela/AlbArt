@@ -21,6 +21,10 @@ public class Transporti {
     @Column(name = "dataDergimit")
     private Date dataDergimit;
 
+    @OneToOne @JoinColumn  (name = "porosi_id")
+    private Porosi porosi;
+
+
     public Transporti(Long transportiId, String emri, String adresa, String statusi, Date dataDergimit) {
         this.transportiId = transportiId;
         this.emri = emri;
