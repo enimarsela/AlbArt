@@ -38,8 +38,6 @@ public class KlientService {
         user.setPassword(passwordEncoder.encode(klientDto.getUser().getPassword()));
         user.setRoli("KLIENT");
 
-        userRepository.save(user);
-
         Klient klient = new Klient();
         klient.setPreferenca(klientDto.getPreferenca());
         klient.setUser(user);
@@ -50,15 +48,16 @@ public class KlientService {
     // LOGIN
     public Klient login(UserDto userDto) {
 
-        User user = userRepository.findByEmail(userDto.getEmail())
+        Klient klient = klientRepository.findByEmail(userDto.getEmail())
                 .orElseThrow(() -> new EntityNotFoundException("Email nuk ekziston!"));
 
-        if (!passwordEncoder.matches(userDto.getPassword(), user.getPassword())) {
-            throw new RuntimeException("Password i gabuar!");
+        boolean passwordMatch = passwordEncoder.matches(userDto.getPassword(), klient.getUser().getPassword());
+
+        if (!passwordMatch) {
+            throw new RuntimeException("Incorrect password!");
         }
 
-        return klientRepository.findByUser(user)
-                .orElseThrow(() -> new EntityNotFoundException("Klient nuk u gjet për këtë user!"));
+        return klient;
     }
 
     // CRUD

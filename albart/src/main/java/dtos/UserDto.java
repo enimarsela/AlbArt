@@ -11,4 +11,14 @@ public class UserDto {
     private String password;
 
     private String roli;
+
+    public UserDto(String emri, String email, String password, String roli) {
+        this.emri = emri;
+        this.email = email;
+        this.password = password;
+        this.roli = roli;
+    }
+    public UserDto() {
+
+    }
 }

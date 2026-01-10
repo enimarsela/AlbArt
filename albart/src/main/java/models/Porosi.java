@@ -3,7 +3,9 @@ package models;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Data
@@ -26,6 +28,11 @@ public class Porosi {
     @OneToOne
     @JoinColumn(name = "pagesa_id", unique = true)
     private Pagesa pagesa;
+
+    @OneToMany(mappedBy = "porosi", cascade = CascadeType.ALL)
+    private List<ArtikullCart> cart = new ArrayList<>();
+
+
 
     public Porosi(Long porosiId, Date data, String statusi, Klient klient, Pagesa pagesa) {
         this.porosiId = porosiId;

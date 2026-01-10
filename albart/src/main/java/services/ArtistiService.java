@@ -1,6 +1,7 @@
 package services;
 
 import dtos.UserDto;
+import models.User;
 import org.springframework.stereotype.Service;
 
 import dtos.ArtistiDto;
@@ -8,6 +9,7 @@ import jakarta.persistence.EntityNotFoundException;
 import models.Artisti;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import repository.ArtistiRepository;
+import repository.UserRepository;
 
 import java.util.List;
 
@@ -15,6 +17,8 @@ import java.util.List;
 public class ArtistiService {
 
     private ArtistiRepository artistiRepository;
+    private UserRepository userRepository;
+    private UserService userService;
     private BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
 
@@ -25,10 +29,14 @@ public class ArtistiService {
         }
 
         Artisti artist = new Artisti();
-        artist.getUser().setEmri(artistDto.getUser().getEmri());
-        artist.getUser().setEmail(artistDto.getUser().getEmail());
-        artist.getUser().setPassword(passwordEncoder.encode(artistDto.getUser().getPassword()));
-        artist.getUser().setRoli(artistDto.getUser().getRoli());
+
+        User user = new User();
+        user.setEmri(artistDto.getUser().getEmri());
+        user.setEmail(artistDto.getUser().getEmail());
+        user.setPassword(passwordEncoder.encode(artistDto.getUser().getPassword()));
+        user.setRoli(artistDto.getUser().getRoli());
+
+        artist.setUser(user);
         artist.setDescription(artistDto.getDescription());
         artist.setEksperienca(artistDto.getEksperienca());
         artist.setVleresimiTotal(artistDto.getVleresimiTotal());
@@ -63,10 +71,14 @@ public class ArtistiService {
     public Artisti updateArtist(Long id, ArtistiDto artistDto) {
         Artisti artist = getArtistById(id);
 
-        artist.getUser().setEmri(artistDto.getUser().getEmri());
-        artist.getUser().setEmail(artistDto.getUser().getEmail());
-        artist.getUser().setPassword(passwordEncoder.encode(artistDto.getUser().getPassword()));
-        artist.getUser().setRoli(artistDto.getUser().getRoli());
+        User user = userService.getById(artistDto.getUser().getId());
+        user.setEmri(artistDto.getUser().getEmri());
+        user.setEmail(artistDto.getUser().getEmail());
+        user.setPassword(passwordEncoder.encode(artistDto.getUser().getPassword()));
+        user.setRoli(artistDto.getUser().getRoli());
+
+
+        artist.setUser(user);
         artist.setDescription(artistDto.getDescription());
         artist.setEksperienca(artistDto.getEksperienca());
         artist.setVleresimiTotal(artistDto.getVleresimiTotal());

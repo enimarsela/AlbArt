@@ -21,6 +21,7 @@ public class PorosiService {
         p.setStatusi(dto.getStatusi());
         p.setKlient(dto.getKlient());
         p.setPagesa(dto.getPagesa());
+        p.setCart(dto.getCart());
         return repo.save(p);
     }
 
@@ -37,6 +38,7 @@ public class PorosiService {
         p.setStatusi(dto.getStatusi());
         p.setKlient(dto.getKlient());
         p.setPagesa(dto.getPagesa());
+        p.setCart(dto.getCart());
         return repo.save(p);
     }
 

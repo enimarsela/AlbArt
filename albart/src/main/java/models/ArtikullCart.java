@@ -18,9 +18,13 @@ public class ArtikullCart {
     @JoinColumn(name = "produkt_id", unique = true)
     private Produkti produkti;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name= "porosi_id", unique = true)
     private Porosi porosi;
+
+    @ManyToOne
+    @JoinColumn(name = "klient_id")
+    private Klient klient;
 
     public ArtikullCart() {
 

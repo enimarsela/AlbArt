@@ -10,7 +10,7 @@ public class Produkti {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int produktId;
+    private Long produktId;
     @Column(name = "emri")
     private String emri;
     @Column(name = "pershkrimi")
@@ -34,7 +34,7 @@ public class Produkti {
     @JoinColumn(name = "artist_id")
     private Artisti artisti;
 
-    public Produkti(int produktId, String emri, String pershkrimi, double cmimi,
+    public Produkti(Long produktId, String emri, String pershkrimi, double cmimi,
                    String fotoProdukti, String watermark, String statusi, double vleresimiTotal) {
         this.produktId = produktId;
         this.emri = emri;

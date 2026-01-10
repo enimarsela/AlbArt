@@ -10,7 +10,7 @@ import services.PorosiService;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/porosi")
+@RequestMapping("api/checkout")
 public class PorosiController {
 
     private final PorosiService service;
